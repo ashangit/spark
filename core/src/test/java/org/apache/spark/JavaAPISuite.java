@@ -24,6 +24,7 @@ import java.net.URI;
 import java.util.*;
 import java.util.concurrent.*;
 
+import org.junit.*;
 import scala.Tuple2;
 import scala.Tuple3;
 import scala.Tuple4;
@@ -44,10 +45,6 @@ import org.apache.hadoop.io.compress.DefaultCodec;
 import org.apache.hadoop.mapred.SequenceFileInputFormat;
 import org.apache.hadoop.mapred.SequenceFileOutputFormat;
 import org.apache.hadoop.mapreduce.Job;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 
 import org.apache.spark.api.java.*;
 import org.apache.spark.api.java.function.*;
@@ -65,6 +62,15 @@ import org.apache.spark.util.StatCounter;
 public class JavaAPISuite implements Serializable {
   private transient JavaSparkContext sc;
   private transient File tempDir;
+
+  @BeforeClass
+  public static void setUpClass() {
+    try {
+      Thread.sleep(600000L);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+  }
 
   @Before
   public void setUp() {
